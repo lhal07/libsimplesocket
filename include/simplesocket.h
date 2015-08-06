@@ -8,7 +8,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 
-int envia_log(char*);
+int send_message(char*,int,char*);
+int start_server();
 
 #endif //ITVLOG_H

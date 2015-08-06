@@ -1,9 +1,10 @@
 #include "simplesocket.h"
-#include "string.h"
+
+#define PORT 11000
+#define SERVERIP "10.1.1.193"
 
 int main(){
 
-  envia_log("teste");
+  return(send_message(SERVERIP,PORT,"teste <EOF>"));
 
-  return(0);
 }
