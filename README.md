@@ -3,7 +3,7 @@
 #######################
 
 - How to compile:
-- 
+
 $ make all   # Compile library and binary
 
 $ make lib   # Compile just the library
