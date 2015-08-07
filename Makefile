@@ -22,6 +22,7 @@ install:
 	$(CP) $(LIB_DIR)/$(LIBNAME).so.0.0 $(TARGET)/lib/
 	$(CP) $(LIB_DIR)/$(LIBNAME).so.0 $(TARGET)/lib/
 	$(CP) $(LIB_DIR)/$(LIBNAME).so $(TARGET)/lib/
+	$(CP) $(INC_DIR)/$(LIB).h $(TARGET)/include/
 	$(CP) $(BIN_DIR)/$(CLIENT) $(TARGET)/bin/
 	$(CP) $(BIN_DIR)/$(SERVER) $(TARGET)/bin/
 
@@ -38,12 +39,12 @@ lib_dir:
 bin_dir:
 	mkdir -p $(BIN_DIR)
 
-lib: $(LIB_DIR)/$(LIBNAME).so 
+lib: $(LIB_DIR)/$(LIBNAME).so
 
 bin: $(BIN_DIR)/$(CLIENT) $(BIN_DIR)/$(SERVER)
 
 $(LIB_DIR)/$(LIBNAME).so: $(SRC_DIR)/$(LIBNAME).o lib_dir
-	$(CC) -fPIC -shared -Wl,-soname,$(LIB_DIR)/$(LIBNAME).so.0 -I$(INC_DIR) -o $(LIB_DIR)/$(LIBNAME).so.0.0 $(SRC_DIR)/$(LIBNAME).o
+	$(CC) -fPIC -shared -I$(INC_DIR) -o $(LIB_DIR)/$(LIBNAME).so.0.0 $(SRC_DIR)/$(LIBNAME).o
 	$(RM) $(LIB_DIR)/$(LIBNAME).so.0
 	$(RM) $(LIB_DIR)/$(LIBNAME).so
 	$(LINK) $(LIBNAME).so.0.0 $(LIB_DIR)/$(LIBNAME).so.0
