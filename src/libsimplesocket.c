@@ -1,6 +1,5 @@
 #include "simplesocket.h"
 
-
 #define DEBUG
 
 int send_message(char* server_ip, int port, char* message)
@@ -15,6 +14,7 @@ int send_message(char* server_ip, int port, char* message)
   //he = gethostbyaddr(&ipv4addr, sizeof ipv4addr, AF_INET);
 
   //bcopy((char *)he->h_addr, (char *)&server_addr.sin_addr, he->h_length);
+  server_addr.sin_addr.s_addr = inet_addr(server_ip);
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = htons(port);
 
@@ -113,6 +113,7 @@ int start_server()
     {
         perror("recv failed");
     }
+    close(client_sock);
 
     return 0;
 }
